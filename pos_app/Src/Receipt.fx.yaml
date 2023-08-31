@@ -37,7 +37,7 @@
                 ForAll(
                     Gallery6.AllItems,
                     {
-                        Refno: Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount),
+                        Refno: Text(DateValue(DatePicker3.SelectedDate),LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount),
                         Productlist: Label1.Text,
                         AmountProduct: Value(Label2.Text),
                         qty: Value(Label16.Text)
@@ -51,7 +51,7 @@
                     Time: Text(Label3_1.Text),
                     Member: Text(Label10_2.Text),
                     Amount: Value(Label23.Text),
-                    Ref: Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount)
+                    Ref: Text(DateValue(DatePicker3.SelectedDate),LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount)
                 }
             );
             Patch(
@@ -64,7 +64,7 @@
                     payment2: Value(Label42.Text),
                     Paid: Value(Label25.Text),
                     Chage: Value(Label48.Text),
-                    RefPay: Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount),
+                    RefPay: Text(DateValue(DatePicker3.SelectedDate),LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount),
                     PaymentMethodsSecond: Last(PaymentMethods).Methods
                 }
             );

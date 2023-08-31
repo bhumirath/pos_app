@@ -86,6 +86,7 @@
             Text: |-
                 =Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount)
                 //LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat
+            Visible: =false
             Width: =208
             X: =712
             ZIndex: =6
