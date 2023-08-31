@@ -282,6 +282,7 @@
         Text: |-
             =Text(DateValue(DatePicker3.SelectedDate),LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount)
             //LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat
+        Visible: =false
         Width: =197
         X: =70
         Y: =111
