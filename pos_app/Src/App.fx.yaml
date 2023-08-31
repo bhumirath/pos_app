@@ -1,0 +1,19 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =Set(code,Text(TextInput12));
+        Set(role,LookUp(Cashier_Masters, User().Email = Email).Role);
+        Set(AddressRe,LookUp(Cashier_Masters, User().Email = Email).Store_.Address);
+        Set(workdate,LookUp(OpeStores,Work_Date = DatePicker3.SelectedDate));
+        Set(IsStoreOpen,false);
+        Set(format,Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount))
+    StartScreen: =Loading
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

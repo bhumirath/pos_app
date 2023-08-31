@@ -1,0 +1,20 @@
+"'Close Store' As screen":
+
+    Button7 As button:
+        Height: =283
+        OnSelect: |-
+            =Set(IsStoreOpen,false);Navigate(Loading);Patch(OpeStores,First(Filter(OpeStores, ID = Last(OpeStores).ID)),{OpenStatus: 'OpenStatus (OpeStores)'.Close});
+        Size: =70
+        Text: ="ปิดร้าน"
+        Width: =688
+        X: =366
+        Y: =243
+        ZIndex: =2
+
+    Icon13 As icon.ChevronLeft:
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Navigate('Point of Sales')
+        X: =40
+        Y: =40
+        ZIndex: =3
+

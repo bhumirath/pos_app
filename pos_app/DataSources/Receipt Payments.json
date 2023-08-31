@@ -1,0 +1,103 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr35c_receiptpaymentses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr35c_receiptpayments",
+    "MaxGetRowsCount": 500,
+    "Name": "Receipt Payments",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr35c_amount": "Amount",
+      "cr35c_chage": "Chage",
+      "cr35c_id": "ID",
+      "cr35c_paid": "Paid",
+      "cr35c_payment1": "payment1",
+      "cr35c_payment2": "payment2",
+      "cr35c_paymentmethods": "PaymentMethodsFrist",
+      "cr35c_paymentmetthodssecond": "PaymentMethodsSecond",
+      "cr35c_receiptpayments_AsyncOperations": "System Jobs",
+      "cr35c_receiptpayments_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr35c_receiptpayments_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr35c_receiptpayments_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr35c_receiptpayments_ProcessSession": "Process Sessions",
+      "cr35c_receiptpayments_SyncErrors": "Sync Errors",
+      "cr35c_receiptpaymentsid": "Receipt Payments",
+      "cr35c_refpay": "RefPay",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Receipt Payments",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Receipt Payments (Views)",
+    "Name": "_cr35c_receiptpayments_views",
+    "RelatedEntityName": "Receipt Payments",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "2c4646f9-d339-4bf6-baca-f4c774699600": "Receipt Payments Associated View",
+      "44c1dac5-7496-490e-aedc-813674ae23ae": "Active Receipt Payments",
+      "49e5bd55-ddbd-4b46-8e46-22b67bc4be66": "Inactive Receipt Payments",
+      "ba439e4b-57a5-4fa6-8a3f-90829aaaf32d": "Receipt Payments Lookup View",
+      "dba04040-1b81-484c-90cb-5109cd80593b": "Receipt Payments Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Receipt Payments)",
+    "Name": "cr35c_receiptpayments_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Receipt Payments"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Receipt Payments",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Receipt Payments)",
+    "Name": "cr35c_receiptpayments_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Receipt Payments"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Receipt Payments",
+    "Type": "OptionSetInfo"
+  }
+]

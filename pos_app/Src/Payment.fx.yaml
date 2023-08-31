@@ -1,0 +1,560 @@
+Payment As screen:
+
+    Container6 As groupContainer.manualLayoutContainer:
+        Height: =43
+        Width: =1366
+        ZIndex: =1
+
+        Rectangle11 As rectangle:
+            Height: =43
+            Width: =1366
+            ZIndex: =1
+
+        Label9 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Size: =20
+            Text: ="PAYMENT"
+            ZIndex: =2
+
+        Icon6 As icon.DetailList:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =43
+            Icon: =Icon.DetailList
+            OnSelect: |-
+                =If(_showSelectMenuPay, UpdateContext({_showSelectMenuPay: false}), UpdateContext({_showSelectMenuPay: true}))
+            X: =1302
+            ZIndex: =3
+
+    Container7 As groupContainer.manualLayoutContainer:
+        Height: =661
+        Width: =761
+        X: =320
+        Y: =76
+        ZIndex: =2
+
+        Rectangle13 As rectangle:
+            Fill: =RGBA(241, 244, 249, 1)
+            Height: =661
+            Width: =761
+            ZIndex: =1
+
+        Container8 As groupContainer.manualLayoutContainer:
+            Height: =330
+            Width: =309
+            X: =48
+            Y: =20
+            ZIndex: =2
+
+            "Gallery4 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                DelayItemLoading: =true
+                Height: =330
+                Items: =CustomerPaymentMethods
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =0
+                TemplateSize: =104
+                Width: =297
+                WrapCount: =2
+                ZIndex: =8
+
+                Button5 As button:
+                    Color: =RGBA(56, 96, 178, 1)
+                    Fill: =RGBA(219, 219, 219, 1)
+                    Height: =63
+                    OnSelect: |-
+                        =If(CountRows(PaymentMethods) = 2,
+                            // ถ้ามี 2 รายการแล้วให้ทับรายการแรก
+                            Patch(PaymentMethods, Last(PaymentMethods), { Methods: ThisItem.'Method of payment'})
+                            ,
+                            // ถ้ายังไม่มี 2 รายการให้เพิ่มใหม่
+                            Collect(PaymentMethods, { Methods: ThisItem.'Method of payment' })
+                        )
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Text: =ThisItem.'Method of payment'
+                    Width: =138
+                    X: =8
+                    Y: =20
+                    ZIndex: =7
+
+        Container9 As groupContainer.manualLayoutContainer:
+            Height: =330
+            Width: =344
+            X: =377
+            Y: =20
+            ZIndex: =3
+
+            Button3_7 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: 2 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="2"
+                Width: =65
+                X: =88
+                ZIndex: =2
+
+            Button3_8 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: 1 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="1"
+                Width: =65
+                ZIndex: =3
+
+            Button3_9 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: 3 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="3"
+                Width: =65
+                X: =176
+                ZIndex: =4
+
+            Button3_10 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: 4 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="4"
+                Width: =65
+                Y: =87
+                ZIndex: =5
+
+            Button3_11 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: 5 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="5"
+                Width: =65
+                X: =88
+                Y: =87
+                ZIndex: =6
+
+            Button3_12 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: 6 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="6"
+                Width: =65
+                X: =176
+                Y: =87
+                ZIndex: =7
+
+            Button3_13 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: 7 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="7"
+                Width: =65
+                Y: =175
+                ZIndex: =8
+
+            Button3_14 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: 8 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="8"
+                Width: =65
+                X: =88
+                Y: =175
+                ZIndex: =9
+
+            Button3_15 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: 9 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="9"
+                Width: =65
+                X: =176
+                Y: =175
+                ZIndex: =10
+
+            Button3_16 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="+/-"
+                Width: =65
+                Y: =262
+                ZIndex: =11
+
+            Button3_17 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: 0 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="0"
+                Width: =65
+                X: =88
+                Y: =262
+                ZIndex: =12
+
+            Button3_18 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="."
+                Width: =65
+                X: =176
+                Y: =262
+                ZIndex: =13
+
+            Button3_19 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: TextInput + 10 });UpdateContext({ TextInput1: TextInput + 10 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="+10"
+                Width: =78
+                X: =266
+                ZIndex: =14
+
+            Button3_20 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: TextInput + 100 });UpdateContext({ TextInput1: TextInput + 100 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="+100"
+                Width: =78
+                X: =266
+                Y: =87
+                ZIndex: =15
+
+            Button3_21 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: TextInput + 500 });UpdateContext({ TextInput1: TextInput + 500 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="+500"
+                Width: =78
+                X: =266
+                Y: =175
+                ZIndex: =16
+
+            Button3_22 As button:
+                Color: =RGBA(56, 96, 178, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =63
+                OnSelect: |-
+                    =UpdateContext({ TextInput: TextInput + 1000 });UpdateContext({ TextInput1: TextInput + 1000 })
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="+1,000"
+                Width: =78
+                X: =266
+                Y: =262
+                ZIndex: =17
+
+        Button3_23 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(219, 219, 219, 1)
+            FontWeight: =FontWeight.Normal
+            Height: =63
+            OnSelect: |-
+                =Navigate(Receipt,ScreenTransition.None , {Methods: TextInput3_1,Chage:TextInput3_7,total: ParameterName,payment1: TextInput3_2 ,payment2: TextInput3_6 ,Itemlist: Itemlist,CustomerName: CustomerName,PaymentMethod: TextInput3_1,PaymentMethod2: Last(PaymentMethods).Methods,Amount: TextInput3, Paid: TextInput3_6 });
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="PAY"
+            Width: =120
+            X: =456
+            Y: =579
+            ZIndex: =5
+
+        Button3_24 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(219, 219, 219, 1)
+            Height: =63
+            OnSelect: =Navigate('Point of Sales');
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="BACK"
+            Width: =120
+            X: =601
+            Y: =579
+            ZIndex: =6
+
+    Container11 As groupContainer.manualLayoutContainer:
+        Height: =202
+        Width: =672
+        X: =368
+        Y: =440
+        ZIndex: =3
+
+        TextInput3 As text:
+            Default: =ParameterName
+            Height: =41
+            Width: =146
+            X: =10
+            Y: =52
+            ZIndex: =1
+
+        TextInput3_2 As text:
+            Default: =TextInput1
+            Height: =41
+            Width: =146
+            X: =350
+            Y: =52
+            ZIndex: =2
+
+        TextInput3_3 As text:
+            Default: =(Value(TextInput3_2.Text) - ParameterName)
+            Height: =41
+            Width: =146
+            X: =517
+            Y: =52
+            ZIndex: =3
+
+        TextInput3_4 As text:
+            Default: =(ParameterName - Value(TextInput3_2.Text))
+            Height: =41
+            Width: =146
+            X: =10
+            Y: =110
+            ZIndex: =4
+
+        TextInput3_6 As text:
+            Default: =TextInput
+            Height: =41
+            Width: =146
+            X: =350
+            Y: =110
+            ZIndex: =5
+
+        TextInput3_7 As text:
+            Default: =Value(TextInput3_6.Text) - Value(TextInput3_4.Text)
+            Height: =41
+            Width: =146
+            X: =517
+            Y: =110
+            ZIndex: =6
+
+        Label14 As label:
+            FontWeight: =FontWeight.Bold
+            Text: ="Amount to pay"
+            X: =10
+            Y: =12
+            ZIndex: =7
+
+        Label14_1 As label:
+            FontWeight: =FontWeight.Bold
+            Text: ="Tender type"
+            X: =183
+            Y: =12
+            ZIndex: =8
+
+        Label14_2 As label:
+            FontWeight: =FontWeight.Bold
+            Text: ="Paid"
+            X: =350
+            Y: =12
+            ZIndex: =9
+
+        Label14_3 As label:
+            FontWeight: =FontWeight.Bold
+            Text: ="Chage"
+            X: =517
+            Y: =12
+            ZIndex: =10
+
+        Label15 As label:
+            Text: =Param(ParameterName) 
+            X: =33
+            Y: =151
+            ZIndex: =11
+
+        TextInput3_5 As text:
+            Default: =""
+            Width: =146
+            X: =178
+            Y: =53
+            ZIndex: =12
+
+        TextInput3_8 As text:
+            Default: =""
+            Width: =146
+            X: =178
+            Y: =111
+            ZIndex: =13
+
+        "Gallery5 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =119
+            Items: =PaymentMethods
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =57
+            Width: =168
+            X: =160
+            Y: =52
+            ZIndex: =14
+
+            TextInput3_1 As text:
+                Default: =ThisItem.Methods
+                Height: =42
+                Width: =152
+                X: =16
+                ZIndex: =1
+
+    Icon4 As icon.Reset:
+        Height: =43
+        Icon: =Icon.Reset
+        OnSelect: |-
+            =Clear(PaymentMethods);UpdateContext({ TextInput: TextInput * 0 });UpdateContext({ TextInput1: TextInput * 0 })
+        Width: =40
+        X: =1232
+        ZIndex: =4
+
+    Label3_2 As label:
+        Color: =RGBA(0, 16, 96, 1)
+        Height: =44
+        Size: =18
+        Text: |-
+            =Text( Today(), "dd/mmm/yyyy :  " )&Text( CurrentTime, DateTimeFormat.LongTime24 )
+        Visible: =false
+        Width: =297
+        X: =142
+        ZIndex: =5
+
+    Label10_1 As label:
+        FontWeight: =FontWeight.Lighter
+        Text: =CustomerName
+        Visible: =false
+        X: =112
+        Y: =544
+        ZIndex: =6
+
+    Container17_3 As groupContainer.manualLayoutContainer:
+        Height: =400
+        Visible: =_showSelectMenuPay
+        Width: =275
+        X: =1089
+        Y: =44
+        ZIndex: =7
+
+        Rectangle1_3 As rectangle:
+            Height: =400
+            Width: =275
+            ZIndex: =1
+
+        Button2_4 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: |-
+                =Navigate('Point of Sales');UpdateContext({_showSelectMenuPay: false})
+            Text: ="Point of Sales Page"
+            Width: =275
+            ZIndex: =2
+
+        Button2_5 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: |-
+                =Navigate('Receipt History');UpdateContext({_showSelectMenuPay: false})
+            Text: ="Receipt History Page"
+            Width: =275
+            Y: =52
+            ZIndex: =3
+
+        Button2_9 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: |-
+                =Navigate('Receipt History');UpdateContext({_showSelectMenuPay: false})
+            Text: ="Receipt History Page"
+            Width: =275
+            Y: =104
+            ZIndex: =4
+

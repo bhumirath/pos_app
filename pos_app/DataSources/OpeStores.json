@@ -1,0 +1,122 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr35c_opestores",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr35c_opestore",
+    "MaxGetRowsCount": 500,
+    "Name": "OpeStores",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr35c_change": "Change",
+      "cr35c_cr35c_cashier_master_StoreOp_cr35c_opesto": "Cashier_Masters",
+      "cr35c_id": "ID",
+      "cr35c_openstatus": "OpenStatus",
+      "cr35c_opestore_AsyncOperations": "System Jobs",
+      "cr35c_opestore_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr35c_opestore_DuplicateBaseRecord": "Duplicate Records (cr35c_opestore_DuplicateBaseRecord)",
+      "cr35c_opestore_DuplicateMatchingRecord": "Duplicate Records (cr35c_opestore_DuplicateMatchingRecord)",
+      "cr35c_opestore_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr35c_opestore_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr35c_opestore_ProcessSession": "Process Sessions",
+      "cr35c_opestore_SyncErrors": "Sync Errors",
+      "cr35c_opestoreid": "OpeStore",
+      "cr35c_storeref": "StoreRef",
+      "cr35c_work_date": "Work_Date",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "OpeStores",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "OpeStores (Views)",
+    "Name": "_cr35c_opestore_views",
+    "RelatedEntityName": "OpeStores",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "9d02e464-83d3-4d79-8f13-eab6c5098ae8": "OpeStore Lookup View",
+      "9d21beaf-44e5-482d-ba46-bb0df7465f2f": "Inactive OpeStores",
+      "a2c0834c-7ea2-4490-af46-d18b96b1050a": "OpeStore Associated View",
+      "b85fdc67-382f-431e-a25c-0a5e6b026564": "OpeStore Advanced Find View",
+      "eb64b40e-7038-4254-87a8-3a8de230a293": "Active OpeStores"
+    }
+  },
+  {
+    "DisplayName": "OpenStatus (OpeStores)",
+    "Name": "cr35c_opestore_cr35c_openstatus",
+    "OptionSetInfoNameMapping": {
+      "595150000": "Open",
+      "595150001": "Close"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr35c_openstatus",
+        "OptionSetReferenceEntityName": "OpeStores"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "cr35c_openstatus",
+    "RelatedEntityName": "OpeStores",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (OpeStores)",
+    "Name": "cr35c_opestore_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "OpeStores"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "OpeStores",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (OpeStores)",
+    "Name": "cr35c_opestore_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "OpeStores"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "OpeStores",
+    "Type": "OptionSetInfo"
+  }
+]
