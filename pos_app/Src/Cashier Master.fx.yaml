@@ -1,0 +1,333 @@
+"'Cashier Master' As screen":
+
+    Container21_2 As groupContainer.manualLayoutContainer:
+        Height: =41
+        Width: =1366
+        ZIndex: =1
+
+        Rectangle21_2 As rectangle:
+            Height: =41
+            Width: =1366
+            ZIndex: =1
+
+        Label40_3 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="CASHIER MASTER"
+            X: =40
+            Y: =1
+            ZIndex: =2
+
+        Icon12_1 As icon.ArrowLeft:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =40
+            Icon: =Icon.ArrowLeft
+            OnSelect: =Navigate('Point of Sales')
+            Width: =41
+            X: =1300
+            Y: =1
+            ZIndex: =3
+
+    Container22_2 As groupContainer.manualLayoutContainer:
+        Height: =728
+        Width: =453
+        Y: =40
+        ZIndex: =2
+
+        Dropdown1_2 As dropdown:
+            Items: =Stores
+            ZIndex: =1
+
+        "Gallery11_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =670
+            Items: =Cashier_Masters
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            OnSelect: |-
+                =Collect(Cashierlist, {CashierNo: ThisItem.CashierNo , Cashie_Name: ThisItem.'Cashier_Name ', Email: ThisItem.Email, Mobile: ThisItem.Mobile, Role: ThisItem.Role, CashierAddress: ThisItem.CashierAddress});
+                ClearCollect(Cashierlist,{CashierNo: ThisItem.CashierNo , Cashie_Name: ThisItem.'Cashier_Name ', Email: ThisItem.Email, Mobile: ThisItem.Mobile, Role: ThisItem.Role, CashierAddress: ThisItem.CashierAddress})
+            TemplatePadding: =0
+            TemplateSize: =104
+            Width: =453
+            Y: =58
+            ZIndex: =2
+
+            Separator6_1 As rectangle:
+                Height: =8
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - Self.Height
+                ZIndex: =5
+
+            Rectangle22_1 As rectangle:
+                Height: =Parent.TemplateHeight - Separator6_1.Height
+                OnSelect: =Select(Parent)
+                Visible: =ThisItem.IsSelected
+                Width: =4
+                ZIndex: =6
+
+            Label53_2 As label:
+                Height: =32
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.'Cashier_Name '
+                Width: =241
+                X: =22
+                Y: =52
+                ZIndex: =7
+
+            Label61_1 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.Store_.CodeStore
+                X: =22
+                ZIndex: =8
+
+            Button3_1 As button:
+                DisplayMode: =DisplayMode.View
+                Height: =36
+                OnSelect: =Select(Parent)
+                Text: ="Current"
+                Visible: =ThisItem.IsSelected
+                Width: =111
+                X: =320
+                Y: =28
+                ZIndex: =9
+
+    Container23_2 As groupContainer.manualLayoutContainer:
+        Height: =727
+        Width: =913
+        X: =453
+        Y: =41
+        ZIndex: =3
+
+        "Gallery8_2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =396
+            Items: =Cashierlist
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =396
+            Width: =867
+            X: =28
+            Y: =94
+            ZIndex: =1
+
+            TextInput10_2 As text:
+                Default: =ThisItem.Email
+                DisplayMode: =If(EditByAdmin, DisplayMode.Edit, DisplayMode.View)
+                OnSelect: =Select(Parent)
+                X: =547
+                Y: =145
+                ZIndex: =1
+
+            TextInput11_2 As text:
+                Default: =ThisItem.Cashie_Name
+                DisplayMode: =If(EditByAdmin, DisplayMode.Edit, DisplayMode.View)
+                OnSelect: =Select(Parent)
+                X: =547
+                Y: =87
+                ZIndex: =2
+
+            TextInput12_2 As text:
+                Default: =ThisItem.Mobile
+                DisplayMode: =If(EditByAdmin, DisplayMode.Edit, DisplayMode.View)
+                OnSelect: =Select(Parent)
+                X: =547
+                Y: =203
+                ZIndex: =3
+
+            Label51_7 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Cashier Name"
+                X: =20
+                Y: =87
+                ZIndex: =4
+
+            Label51_8 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Email"
+                X: =20
+                Y: =145
+                ZIndex: =5
+
+            Label51_9 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Mobile"
+                X: =20
+                Y: =203
+                ZIndex: =6
+
+            Label69_1 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Address"
+                X: =20
+                Y: =320
+                ZIndex: =7
+
+            TextInput7_1 As text:
+                Default: =ThisItem.CashierAddress
+                DisplayMode: =If(EditByAdmin, DisplayMode.Edit, DisplayMode.View)
+                OnSelect: =Select(Parent)
+                X: =547
+                Y: =320
+                ZIndex: =8
+
+            Label71_2 As label:
+                Text: ="Store"
+                X: =20
+                Y: =261
+                ZIndex: =9
+
+            Dropdown2_1 As dropdown:
+                DisplayMode: =If(EditByAdmin, DisplayMode.Edit, DisplayMode.View)
+                Items: =Stores
+                Width: =320
+                X: =547
+                Y: =261
+                ZIndex: =10
+
+            TextInput17 As text:
+                Default: =ThisItem.CashierNo
+                DisplayMode: =DisplayMode.View
+                OnSelect: =Select(Parent)
+                X: =547
+                Y: =30
+                ZIndex: =11
+
+            Label51_10 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Cashier No."
+                X: =20
+                Y: =30
+                ZIndex: =12
+
+        Button4_2 As button:
+            DisplayMode: =If(EditByAdmin, DisplayMode.Edit, DisplayMode.View)
+            FontWeight: =FontWeight.Bold
+            OnSelect: |
+                =Patch(
+                    Cashier_Masters,
+                    First(Filter(Cashier_Masters, CashierNo = TextInput17.Text)),
+                    {
+                        'Cashier_Name ': Text(TextInput11_2.Text),
+                        Mobile: Text(TextInput12_2.Text),
+                        Email: Text(TextInput10_2.Text),
+                        Store_: Dropdown2_1.Selected,
+                        CashierAddress: Text(TextInput7_1.Text)
+                    }
+                )
+            Text: ="Edit"
+            X: =735
+            Y: =529
+            ZIndex: =2
+
+        Rectangle23_1 As rectangle:
+            Fill: =RGBA(241, 244, 249, 1)
+            Height: =676
+            Visible: =_AddStore
+            Width: =913
+            Y: =51
+            ZIndex: =3
+
+        Icon7_1 As icon.Cancel:
+            Height: =31
+            Icon: =Icon.Cancel
+            OnSelect: |-
+                =UpdateContext({_AddStore: false})
+            Visible: =_AddStore
+            Width: =40
+            X: =867
+            Y: =67
+            ZIndex: =4
+
+        Button8_2 As button:
+            DisplayMode: =If(EditByAdmin, DisplayMode.Edit, DisplayMode.View)
+            OnSelect: |-
+                =UpdateContext({_AddStore: true})
+            Text: ="ADD"
+            X: =747
+            Y: =11
+            ZIndex: =5
+
+        Button10_1 As button:
+            Height: =48
+            OnSelect: |-
+                =Patch(Cashier_Masters,{'Cashier_Name ': Text(TextInput9_1.Text),Email: Text(TextInput13_1.Text),Mobile: Text(TextInput14_1.Text),Store_: Dropdown2.Selected});UpdateContext({_AddStore: false})
+            Text: ="Add Data"
+            Visible: =_AddStore
+            Width: =180
+            X: =383
+            Y: =608
+            ZIndex: =6
+
+        TextInput9_1 As text:
+            Default: =""
+            Visible: =_AddStore
+            X: =587
+            Y: =178
+            ZIndex: =7
+
+        TextInput13_1 As text:
+            Default: =""
+            Visible: =_AddStore
+            X: =587
+            Y: =249
+            ZIndex: =8
+
+        TextInput14_1 As text:
+            Default: =""
+            Visible: =_AddStore
+            X: =587
+            Y: =315
+            ZIndex: =9
+
+        Label62_1 As label:
+            Text: ="Cashier Name"
+            Visible: =_AddStore
+            X: =22
+            Y: =178
+            ZIndex: =11
+
+        Label64_1 As label:
+            Text: ="Email"
+            Visible: =_AddStore
+            X: =22
+            Y: =249
+            ZIndex: =12
+
+        Label70_1 As label:
+            Text: ="Mobile"
+            Visible: =_AddStore
+            X: =22
+            Y: =315
+            ZIndex: =13
+
+        Label71_1 As label:
+            Text: ="Store"
+            Visible: =_AddStore
+            X: =22
+            Y: =382
+            ZIndex: =14
+
+        Button13 As button:
+            Height: =48
+            HoverColor: =RGBA(241, 244, 249, 1)
+            OnSelect: |
+                =If(
+                    (Label72.Text = "Admin"),
+                    If(EditByAdmin, UpdateContext({ EditByAdmin: false }), UpdateContext({ EditByAdmin: true })),
+                    Notify("You don't have permission.", NotificationType.Warning)
+                );
+            Text: ="AdminMode"
+            Width: =154
+            X: =40
+            Y: =11
+            ZIndex: =15
+
+        Dropdown2 As dropdown:
+            Items: =Stores
+            Visible: =_AddStore
+            X: =585
+            Y: =382
+            ZIndex: =16
+

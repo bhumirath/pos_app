@@ -1,0 +1,46 @@
+{
+  "QualifiedValues": [
+    {
+      "Kind": "default.cds_cr35c_receiptpayments_forms",
+      "Namespace": "Receipt Payments (Forms)",
+      "Values": {
+        "Information": "946a3cbf-7d20-4b27-96ce-6fa2640555c8"
+      }
+    },
+    {
+      "Kind": "default.cds_cr35c_receipttransactions_forms",
+      "Namespace": "Receipt Transactions (Forms)",
+      "Values": {
+        "Information": "9fee2771-d34f-4e17-95f3-d64279d303c9"
+      }
+    },
+    {
+      "Kind": "default.cds_cr35c_receiptlines_forms",
+      "Namespace": "Receipt Lines (Forms)",
+      "Values": {
+        "Information": "35d58611-3083-4330-82ff-ccc7cd84ea6b"
+      }
+    },
+    {
+      "Kind": "default.cds_cr35c_store_forms",
+      "Namespace": "Stores (Forms)",
+      "Values": {
+        "Information": "460bb1a6-7694-4894-8070-d6b6430e2c43"
+      }
+    },
+    {
+      "Kind": "default.cds_cr35c_cashier_master_forms",
+      "Namespace": "Cashier_Masters (Forms)",
+      "Values": {
+        "Information": "4d60ff58-0a60-4584-80aa-b28310ac3267"
+      }
+    },
+    {
+      "Kind": "default.cds_cr35c_opestore_forms",
+      "Namespace": "OpeStores (Forms)",
+      "Values": {
+        "Information": "4e6913bf-b506-4c08-9134-e0cb1800de0a"
+      }
+    }
+  ]
+}

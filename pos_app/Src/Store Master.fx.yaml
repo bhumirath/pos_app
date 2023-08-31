@@ -1,0 +1,340 @@
+"'Store Master' As screen":
+
+    Container21 As groupContainer.manualLayoutContainer:
+        Height: =41
+        Width: =1366
+        ZIndex: =1
+
+        Rectangle21 As rectangle:
+            Height: =41
+            Width: =1366
+            ZIndex: =1
+
+        Label40 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="STORE MASTER"
+            X: =40
+            Y: =1
+            ZIndex: =2
+
+    Container22 As groupContainer.manualLayoutContainer:
+        Height: =728
+        Width: =453
+        Y: =40
+        ZIndex: =2
+
+        Dropdown1 As dropdown:
+            Items: =Stores
+            ZIndex: =1
+
+        "Gallery11 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Items: =Stores
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            OnSelect: |-
+                =Collect(Storelist, { StoreCode: ThisItem.'Store Code', StoreName: ThisItem.StoreName, ReceiptFormat: ThisItem.ReceiptFormat, CodeStore: ThisItem.CodeStore , Address: ThisItem.Address});
+                ClearCollect(Storelist,{StoreCode: ThisItem.'Store Code', StoreName: ThisItem.StoreName, ReceiptFormat: ThisItem.ReceiptFormat, CodeStore: ThisItem.CodeStore , Address: ThisItem.Address})
+            TemplatePadding: =0
+            TemplateSize: =104
+            Width: =453
+            Y: =58
+            ZIndex: =2
+
+            Separator6 As rectangle:
+                Height: =8
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - Self.Height
+                ZIndex: =5
+
+            Rectangle22 As rectangle:
+                Height: =Parent.TemplateHeight - Separator6.Height
+                OnSelect: =Select(Parent)
+                Visible: =ThisItem.IsSelected
+                Width: =4
+                ZIndex: =6
+
+            Label53 As label:
+                Height: =32
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.'Store Code'
+                X: =21
+                ZIndex: =7
+
+            Label61 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.StoreName
+                X: =21
+                Y: =44
+                ZIndex: =8
+
+            Button3 As button:
+                DisplayMode: =DisplayMode.View
+                Height: =36
+                OnSelect: =Select(Parent)
+                Text: ="Current"
+                Visible: =ThisItem.IsSelected
+                Width: =111
+                X: =320
+                Y: =28
+                ZIndex: =9
+
+    Container23 As groupContainer.manualLayoutContainer:
+        Height: =727
+        Width: =913
+        X: =453
+        Y: =41
+        ZIndex: =3
+
+        "Gallery8 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =396
+            Items: =Storelist
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =396
+            Width: =867
+            X: =38
+            Y: =58
+            ZIndex: =1
+
+            TextInput10 As text:
+                Default: =ThisItem.StoreName
+                DisplayMode: =If(EditByAdmin_1, DisplayMode.Edit, DisplayMode.View)
+                OnSelect: =Select(Parent)
+                X: =542
+                Y: =168
+                ZIndex: =1
+
+            TextInput11 As text:
+                Default: =ThisItem.CodeStore
+                DisplayMode: =If(EditByAdmin_1, DisplayMode.Edit, DisplayMode.View)
+                OnSelect: =Select(Parent)
+                X: =542
+                Y: =84
+                ZIndex: =2
+
+            TextInput12 As text:
+                Default: =ThisItem.ReceiptFormat
+                DisplayMode: =If(EditByAdmin_1, DisplayMode.Edit, DisplayMode.View)
+                OnSelect: =Select(Parent)
+                X: =542
+                Y: =252
+                ZIndex: =3
+
+            Label51 As label:
+                OnSelect: =Select(Parent)
+                Text: ="NO."
+                X: =15
+                Y: =84
+                ZIndex: =4
+
+            Label51_2 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Name."
+                X: =15
+                Y: =168
+                ZIndex: =5
+
+            Label51_3 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Receipt Format"
+                X: =15
+                Y: =252
+                ZIndex: =6
+
+            Label69 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Address"
+                X: =22
+                Y: =331
+                ZIndex: =7
+
+            TextInput7 As text:
+                Default: =ThisItem.Address
+                DisplayMode: =If(EditByAdmin_1, DisplayMode.Edit, DisplayMode.View)
+                OnSelect: =Select(Parent)
+                X: =542
+                Y: =331
+                ZIndex: =8
+
+            TextInput16 As text:
+                Default: =ThisItem.StoreCode
+                DisplayMode: =DisplayMode.View
+                OnSelect: =Select(Parent)
+                X: =542
+                Y: =10
+                ZIndex: =9
+
+        Button4 As button:
+            DisplayMode: =If(EditByAdmin_1, DisplayMode.Edit, DisplayMode.View)
+            FontWeight: =FontWeight.Bold
+            OnSelect: |-
+                =ClearCollect(
+                    SplitData,
+                    Split(TextInput12.Text, "-")
+                );
+                
+                Set(
+                    InputString,
+                    Last(SplitData)
+                );
+                
+                Set(
+                    CountX,
+                    Len(InputString.Value) - Len(Substitute(InputString.Value, "x", ""))
+                );
+                
+                Set(
+                    ConvertedNumber,
+                    Text(0, "[$-en-US]0")
+                );
+                
+                Set(
+                    NewReceiptCode,
+                    Substitute(TextInput12.Text, "x", ConvertedNumber)
+                );
+                
+                Patch(
+                    Stores,
+                    First(
+                        Filter(
+                            Stores,
+                            'Store Code' = TextInput16.Text
+                        )
+                    ),
+                    {
+                        CodeStore: Text(TextInput11.Text),
+                        Address: Text(TextInput7.Text),
+                        ReceiptFormat: Text(TextInput12.Text),
+                        StoreName: Text(TextInput10.Text)
+                    }
+                );
+                Refresh(Stores)
+            Text: ="Edit"
+            X: =716
+            Y: =488
+            ZIndex: =2
+
+        Rectangle23 As rectangle:
+            Fill: =RGBA(241, 244, 249, 1)
+            Height: =676
+            Visible: =_AddStore
+            Width: =913
+            Y: =51
+            ZIndex: =3
+
+        Icon7 As icon.Cancel:
+            Height: =31
+            Icon: =Icon.Cancel
+            OnSelect: |-
+                =UpdateContext({_AddStore: false})
+            Visible: =_AddStore
+            Width: =40
+            X: =867
+            Y: =67
+            ZIndex: =4
+
+        Button8_1 As button:
+            DisplayMode: =If(EditByAdmin_1, DisplayMode.Edit, DisplayMode.View)
+            OnSelect: |-
+                =UpdateContext({_AddStore: true})
+            Text: ="ADD"
+            X: =753
+            Y: =11
+            ZIndex: =5
+
+        Button10 As button:
+            Height: =48
+            OnSelect: |-
+                =Patch(Stores,{StoreName: Text(TextInput9.Text),CodeStore: Text(TextInput13.Text),Address: Text(TextInput14.Text),ReceiptFormat: Text(TextInput15.Text)});UpdateContext({_AddStore: false})
+            Text: ="Add Data"
+            Visible: =_AddStore
+            Width: =180
+            X: =383
+            Y: =608
+            ZIndex: =6
+
+        TextInput9 As text:
+            Default: =""
+            Visible: =_AddStore
+            X: =587
+            Y: =178
+            ZIndex: =7
+
+        TextInput13 As text:
+            Default: =""
+            Visible: =_AddStore
+            X: =587
+            Y: =249
+            ZIndex: =8
+
+        TextInput14 As text:
+            Default: =""
+            Visible: =_AddStore
+            X: =587
+            Y: =315
+            ZIndex: =9
+
+        TextInput15 As text:
+            Default: =""
+            Visible: =_AddStore
+            X: =587
+            Y: =382
+            ZIndex: =10
+
+        Label62 As label:
+            Text: ="Store Name"
+            Visible: =_AddStore
+            X: =22
+            Y: =178
+            ZIndex: =11
+
+        Label64 As label:
+            Text: ="Code Store"
+            Visible: =_AddStore
+            X: =22
+            Y: =249
+            ZIndex: =12
+
+        Label70 As label:
+            Text: ="Address"
+            Visible: =_AddStore
+            X: =22
+            Y: =315
+            ZIndex: =13
+
+        Label71 As label:
+            Text: ="Receipt Format"
+            Visible: =_AddStore
+            X: =22
+            Y: =382
+            ZIndex: =14
+
+        Button13_1 As button:
+            Height: =48
+            HoverColor: =RGBA(241, 244, 249, 1)
+            OnSelect: |
+                =If(
+                    (Label72.Text = "Admin"),
+                    If(EditByAdmin_1, UpdateContext({ EditByAdmin_1: false }), UpdateContext({ EditByAdmin_1: true })),
+                    Notify("You don't have permission.", NotificationType.Warning)
+                );
+            Text: ="AdminMode"
+            Width: =154
+            X: =22
+            Y: =3
+            ZIndex: =15
+
+    Icon12 As icon.ArrowLeft:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =40
+        Icon: =Icon.ArrowLeft
+        OnSelect: =Navigate('Point of Sales')
+        Width: =41
+        X: =1300
+        Y: =1
+        ZIndex: =4
+

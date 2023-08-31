@@ -1,0 +1,83 @@
+"'New Session' As screen":
+
+    Container24 As groupContainer.manualLayoutContainer:
+        Height: =33
+        Width: =1366
+        ZIndex: =1
+
+        Rectangle20 As rectangle:
+            BorderStyle: =
+            FocusedBorderColor: =
+            Height: =33
+            HoverFill: =
+            PressedFill: =
+            Width: =1366
+            ZIndex: =1
+
+        DatePicker3 As datepicker:
+            Format: ="dddd dd , mmmmm yyyy"
+            Height: =33
+            OnChange: =
+            OnSelect: =
+            X: =540
+            ZIndex: =2
+
+        Label52 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =33
+            Text: |-
+                ="Cashier: " & User().FullName
+            Width: =307
+            X: =40
+            ZIndex: =3
+
+        Label73 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =33
+            Text: |-
+                ="Your Role: " & LookUp(Cashier_Masters, User().Email = Email).Role
+            X: =347
+            ZIndex: =6
+
+        ComboBox1 As combobox:
+            DisplayFields: =["cr35c_storename"]
+            Height: =33
+            Items: =Stores
+            SearchFields: =["cr35c_storecode"]
+            SearchItems: =Search(Stores,ComboBox1.SearchText,"cr35c_storecode")
+            X: =1038
+            ZIndex: =7
+
+    Container25 As groupContainer.manualLayoutContainer:
+        Height: =735
+        Width: =1366
+        Y: =33
+        ZIndex: =2
+
+        Button6 As button:
+            OnSelect: |-
+                =Patch(OpeStores,Defaults(OpeStores),{Work_Date: Text(DatePicker3.SelectedDate) , Change: Value(TextInput8.Text),StoreRef: (ComboBox1.Selected.StoreName) ,OpenStatus: 'OpenStatus (OpeStores)'.Open});Set(IsStoreOpen,true);Navigate('Point of Sales')
+            Text: ="Confirm"
+            X: =615
+            Y: =418
+            ZIndex: =4
+
+        TextInput8 As text:
+            Align: =Align.Center
+            Default: =""
+            Height: =73
+            OnSelect: =
+            Width: =535
+            X: =428
+            Y: =326
+            ZIndex: =5
+
+        Label50 As label:
+            Height: =47
+            OnSelect: =
+            Text: ="Please enter initial changes"
+            Width: =242
+            X: =591
+            Y: =255
+            ZIndex: =6
+

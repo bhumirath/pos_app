@@ -1,0 +1,39 @@
+Loading As screen:
+
+    Image5 As image:
+        Height: =374
+        Image: =ZKZg
+        Width: =434
+        X: =450
+        Y: =105
+        ZIndex: =1
+
+    Label38 As label:
+        Height: =122
+        Size: =40
+        Text: ="Loding........"
+        Width: =312
+        X: =511
+        Y: =516
+        ZIndex: =2
+
+    Button8 As button:
+        Height: =60
+        OnSelect: |
+            =If( Last(Filter(OpeStores,Label52.Text = Label52.Text)).OpenStatus = 'OpenStatus (OpeStores)'.Open,
+                Navigate('Point of Sales'),
+                Navigate('New Session')
+            )
+        Text: ="เข้าสู่โปรแกรม"
+        Width: =232
+        X: =551
+        Y: =658
+        ZIndex: =3
+
+    Label72 As label:
+        Text: =LookUp(Cashier_Masters, User().Email = Email).Role
+        Visible: =false
+        X: =40
+        Y: =40
+        ZIndex: =4
+

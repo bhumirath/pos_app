@@ -1,0 +1,102 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr35c_receipttransactionses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr35c_receipttransactions",
+    "MaxGetRowsCount": 500,
+    "Name": "Receipt Transactions",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr35c_amount": "Amount",
+      "cr35c_id": "ID",
+      "cr35c_member": "Member",
+      "cr35c_receipttransactions_AsyncOperations": "System Jobs",
+      "cr35c_receipttransactions_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr35c_receipttransactions_DuplicateBaseRecord": "Duplicate Records (cr35c_receipttransactions_DuplicateBaseRecord)",
+      "cr35c_receipttransactions_DuplicateMatchingRecord": "Duplicate Records (cr35c_receipttransactions_DuplicateMatchingRecord)",
+      "cr35c_receipttransactions_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr35c_receipttransactions_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr35c_receipttransactions_ProcessSession": "Process Sessions",
+      "cr35c_receipttransactions_SyncErrors": "Sync Errors",
+      "cr35c_receipttransactionsid": "Receipt Transactions",
+      "cr35c_ref": "Ref",
+      "cr35c_time": "Time",
+      "cr35c_void": "void",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Receipt Transactions",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Receipt Transactions (Views)",
+    "Name": "_cr35c_receipttransactions_views",
+    "RelatedEntityName": "Receipt Transactions",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "2e4e2841-d7c3-4e39-9547-e14d82441c3d": "Receipt Transactions Associated View",
+      "2ebfb239-08e5-4d06-8d4f-3aa3ea880950": "Inactive Receipt Transactions",
+      "465558b6-0a64-4232-bc87-66fbe688e32c": "Receipt Transactions Lookup View",
+      "766d7395-4efd-48b5-a612-84ab73b73754": "Receipt Transactions Advanced Find View",
+      "b0b306a9-6ef6-44c9-8425-7cb79c8e0f68": "Active Receipt Transactions"
+    }
+  },
+  {
+    "DisplayName": "Status (Receipt Transactions)",
+    "Name": "cr35c_receipttransactions_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Receipt Transactions"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Receipt Transactions",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Receipt Transactions)",
+    "Name": "cr35c_receipttransactions_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Receipt Transactions"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Receipt Transactions",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,832 @@
+"'Point of Sales' As screen":
+    Fill: =Color.WhiteSmoke
+
+    Container1 As groupContainer.manualLayoutContainer:
+        Height: =475
+        Width: =493
+        Y: =44
+        ZIndex: =3
+
+        Rectangle4 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =475
+            Width: =493
+            ZIndex: =1
+
+        "Gallery3 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =436
+            Items: =colProductOrder
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =140
+            Width: =493
+            ZIndex: =2
+
+            Image2 As image:
+                Height: =72
+                OnSelect: =Select(Parent)
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                Width: =72
+                X: =17
+                Y: =38
+                ZIndex: =1
+
+            Separator3 As rectangle:
+                Height: =8
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - Self.Height
+                ZIndex: =5
+
+            Rectangle8 As rectangle:
+                Height: =Parent.TemplateHeight - Separator3.Height
+                OnSelect: =Select(Parent)
+                Visible: =ThisItem.IsSelected
+                Width: =4
+                ZIndex: =6
+
+            TextInput5 As text:
+                Default: =ThisItem.Count
+                DisplayMode: =If(EditMode, DisplayMode.Edit, DisplayMode.View)
+                Height: =31
+                OnChange: |-
+                    =UpdateContext({ TextInputDefaultValue: Value(TextInput5.Text), ThisItemCountUpdated: ThisItem.Count + Value(TextInput5.Text) })
+                Width: =36
+                X: =99
+                Y: =86
+                ZIndex: =7
+
+            Label7 As label:
+                Height: =48
+                OnSelect: =Select(Parent)
+                Text: ="x"
+                Width: =23
+                X: =140
+                Y: =77
+                ZIndex: =8
+
+            Label8 As label:
+                OnSelect: =Select(Parent)
+                Text: =Value(TextInput18.Text) * Value(TextInput5.Text)
+                Width: =119
+                X: =374
+                Y: =81
+                ZIndex: =9
+
+            Label11 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.ItemNumber
+                X: =99
+                Y: =37
+                ZIndex: =10
+
+            Icon3 As icon.Trash:
+                Height: =40
+                Icon: =Icon.Trash
+                OnSelect: =Remove(colProductOrder,ThisItem)
+                Width: =32
+                X: =431
+                Y: =5
+                ZIndex: =11
+
+            Title3 As label:
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =ThisItem.SearchName
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Parent.TemplateWidth - 173
+                X: =99
+                Y: =13
+                ZIndex: =12
+
+            TextInput18 As text:
+                Default: =ThisItem.PurchasePrice
+                DisplayMode: =If(EditModePrice, DisplayMode.Edit, DisplayMode.View)
+                Height: =37
+                OnSelect: =Select(Parent)
+                Width: =100
+                X: =167
+                Y: =84
+                ZIndex: =13
+
+        Rectangle10 As rectangle:
+            Fill: =RGBA(241, 244, 249, 1)
+            Height: =39
+            OnSelect: =colProductOrder
+            Width: =493
+            Y: =436
+            ZIndex: =3
+
+        Label4 As label:
+            Text: |-
+                ="Totals: " & Sum(Gallery3.AllItems,Value(Label8.Text))
+            X: =332
+            Y: =435
+            ZIndex: =4
+
+        Label6 As label:
+            Text: |-
+                ="Member: " & If(IsBlank(SelectedItem), "กรุณาเลือกรายการ", Title1)
+            Width: =285
+            Y: =435
+            ZIndex: =5
+
+    Container2 As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =44
+        Width: =1366
+        ZIndex: =5
+
+        Rectangle5 As rectangle:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle7 As rectangle:
+            Height: =44
+            Width: =869
+            X: =497
+            ZIndex: =2
+
+        Icon1 As icon.EditFolders:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =33
+            Icon: =Icon.LineWeight
+            OnSelect: |-
+                =If(_showSelectMenu, UpdateContext({_showSelectMenu: false}), UpdateContext({_showSelectMenu: true}))
+            Width: =37
+            X: =1316
+            Y: =5
+            ZIndex: =3
+
+        Timer2 As timer:
+            AutoStart: =true
+            Duration: =1000
+            Height: =44
+            OnTimerEnd: =Set( CurrentTime, Now() )
+            Repeat: =true
+            Visible: =false
+            Width: =168
+            X: =1073
+            ZIndex: =4
+
+        Label3 As label:
+            Color: =RGBA(0, 16, 96, 1)
+            Height: =44
+            Size: =18
+            Text: |-
+                =Text( Today(), "dd/mmm/yyyy :  " )&Text( CurrentTime, DateTimeFormat.LongTime24 )
+            Width: =297
+            X: =199
+            ZIndex: =5
+
+        Icon2 As icon.ShoppingCart:
+            Height: =44
+            Icon: =Icon.ShoppingCart
+            ZIndex: =7
+
+        SearchInput As text:
+            Default: =""
+            Height: =44
+            HintText: ="Scan barcode"
+            OnChange: |-
+                =If(
+                    !IsBlank(LookUp(Gallery2.AllItems, 'Item number' = SearchInput.Text)),
+                    If(
+                        CountRows(Filter(colProductOrder, ItemNumber = SearchInput.Text)) > 0,
+                        UpdateIf(
+                            colProductOrder,
+                            ItemNumber = SearchInput.Text,
+                            { Count: LookUp(colProductOrder, ItemNumber = SearchInput.Text).Count + 1 }
+                        ),
+                        Collect(
+                            colProductOrder,
+                            {
+                                ItemNumber: LookUp(Gallery2.AllItems, 'Item number' = SearchInput.Text).'Item number',
+                                Count: 1,
+                                SearchName: LookUp(Gallery2.AllItems, 'Item number' = SearchInput.Text).'Search name (SearchName)',
+                                PurchasePrice: LookUp(Gallery2.AllItems, 'Item number' = SearchInput.Text).'Purchase price'
+                            }
+                        )
+                    ),
+                    Notify("รหัสสินค้าไม่ถูกต้องกรุณากรอกรหัสสินค้าใหม่", NotificationType.Error)
+                );
+                Reset(SearchInput)
+            Width: =230
+            X: =497
+            ZIndex: =8
+
+        Label44 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =34
+            Text: =User().FullName
+            Width: =266
+            X: =1024
+            Y: =5
+            ZIndex: =10
+
+    Container3 As groupContainer.manualLayoutContainer:
+        Height: =248
+        Width: =493
+        Y: =519
+        ZIndex: =6
+
+        Button1 As button:
+            Height: =62
+            OnSelect: |-
+                =UpdateContext({ TextInput: 1 })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="1"
+            Width: =67
+            ZIndex: =1
+
+        Button1_1 As button:
+            Height: =62
+            OnSelect: |-
+                =UpdateContext({ TextInput: 2 })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="2"
+            Width: =67
+            X: =67
+            ZIndex: =2
+
+        Button1_2 As button:
+            Height: =62
+            OnSelect: |-
+                =UpdateContext({ TextInput: 3 })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="3"
+            Width: =67
+            X: =134
+            ZIndex: =3
+
+        Button1_3 As button:
+            Height: =62
+            OnSelect: |-
+                =If(EditMode, UpdateContext({ EditMode: false }), UpdateContext({ EditMode: true }))
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Qty."
+            Width: =130
+            X: =201
+            ZIndex: =4
+
+        Button1_4 As button:
+            Height: =62
+            OnSelect: |-
+                =UpdateContext({_showSelectMember:true});UpdateContext({ SelectedItem: Blank() });
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Member"
+            X: =331
+            ZIndex: =5
+
+        Button1_5 As button:
+            Height: =62
+            OnSelect: |-
+                =UpdateContext({ TextInput: 4 })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="4"
+            Width: =67
+            Y: =62
+            ZIndex: =6
+
+        Button1_6 As button:
+            Height: =62
+            OnSelect: |-
+                =UpdateContext({ TextInput: 5 })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="5"
+            Width: =67
+            X: =67
+            Y: =62
+            ZIndex: =7
+
+        Button1_7 As button:
+            Height: =62
+            OnSelect: |-
+                =UpdateContext({ TextInput: 6 })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="6"
+            Width: =67
+            X: =134
+            Y: =62
+            ZIndex: =8
+
+        Button1_8 As button:
+            Height: =62
+            OnSelect: |-
+                =If(EditModePrice, UpdateContext({ EditModePrice: false }), UpdateContext({ EditModePrice: true }))
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Price"
+            Width: =130
+            X: =201
+            Y: =62
+            ZIndex: =9
+
+        Button1_9 As button:
+            Height: =62
+            OnSelect: |-
+                =Navigate(Payment,ScreenTransition.None, { ParameterName: Sum(colProductOrder, PurchasePrice * Count), Itemlist: colProductOrder, CustomerName: Title1 , itemname: Title3});
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Payment"
+            Width: =162
+            X: =331
+            Y: =62
+            ZIndex: =10
+
+        Button1_10 As button:
+            Height: =62
+            OnSelect: |-
+                =UpdateContext({ TextInput: 7 })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="7"
+            Width: =67
+            Y: =124
+            ZIndex: =11
+
+        Button1_11 As button:
+            Height: =62
+            OnSelect: |-
+                =UpdateContext({ TextInput: 8 })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="8"
+            Width: =67
+            X: =67
+            Y: =124
+            ZIndex: =12
+
+        Button1_12 As button:
+            Height: =64
+            OnSelect: |-
+                =UpdateContext({ TextInput: 9 })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="9"
+            Width: =67
+            X: =134
+            Y: =124
+            ZIndex: =13
+
+        Button1_13 As button:
+            Height: =64
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Disc."
+            Width: =128
+            X: =201
+            Y: =124
+            ZIndex: =14
+
+        Button1_14 As button:
+            Height: =62
+            OnSelect: =Clear(colProductOrder)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Clear"
+            Width: =162
+            X: =331
+            Y: =126
+            ZIndex: =15
+
+        Button1_15 As button:
+            Height: =62
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="+/-"
+            Width: =67
+            Y: =186
+            ZIndex: =16
+
+        Button1_16 As button:
+            Height: =62
+            OnSelect: |-
+                =UpdateContext({ TextInput: 0 })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="0"
+            Width: =67
+            X: =67
+            Y: =186
+            ZIndex: =17
+
+        Button1_17 As button:
+            Height: =62
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="-"
+            Width: =67
+            X: =134
+            Y: =186
+            ZIndex: =18
+
+        Button1_18 As button:
+            Height: =60
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="<<"
+            Width: =128
+            X: =201
+            Y: =188
+            ZIndex: =19
+
+        Button1_19 As button:
+            Height: =60
+            OnSelect: =Navigate(Loading)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Logout"
+            Width: =162
+            X: =329
+            Y: =188
+            ZIndex: =20
+
+    Container5 As groupContainer.manualLayoutContainer:
+        Height: =723
+        Width: =873
+        X: =493
+        Y: =44
+        ZIndex: =8
+
+        "Gallery2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =723
+            Items: =Search(ReleasedProductsV2,SearchInput.Text,"ProductSearchName","ItemNumber")
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            OnSelect: |
+                =First(Gallery2.AllItems)
+            TemplatePadding: =0
+            TemplateSize: =147
+            Width: =873
+            WrapCount: =3
+            ZIndex: =1
+
+            Image1 As image:
+                Height: =72
+                OnSelect: =Select(Parent)
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                Width: =72
+                X: =16
+                Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                ZIndex: =1
+
+            Title2 As label:
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =ThisItem.'Search name (ProductSearchName)'
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Parent.TemplateWidth - 173
+                X: =103
+                Y: =37
+                ZIndex: =2
+
+            Subtitle2 As label:
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =ThisItem.'Purchase price'
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Title2.Width
+                X: =Title2.X
+                Y: =98
+                ZIndex: =3
+
+            NextArrow2 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                Color: =RGBA(166, 166, 166, 1)
+                Height: =50
+                Icon: =Icon.ChevronRight
+                OnSelect: |-
+                    =
+                    // Check if an item with the same SearchName or ItemNumber already exists in the collection
+                    // If found, update the existing item's PurchasePrice; otherwise, add a new record
+                    If(
+                        CountRows(Filter(colProductOrder, SearchName = ThisItem.'Search name (SearchName)' || ItemNumber = ThisItem.'Item number')) > 0,
+                        // Update existing item
+                        ForAll(
+                            Filter(colProductOrder, SearchName = ThisItem.'Search name (SearchName)' || ItemNumber = ThisItem.'Item number'),
+                            UpdateIf(colProductOrder, SearchName = ThisItem.'Search name (SearchName)' || ItemNumber = ThisItem.'Item number', { Count: Count + 1 })
+                        ),
+                        // Add new item
+                        Collect(colProductOrder, { SearchName: ThisItem.'Search name (SearchName)', PurchasePrice: ThisItem.'Purchase price', ItemNumber: ThisItem.'Item number', Count: 1 }
+                        )
+                    )
+                PaddingBottom: =16
+                PaddingLeft: =16
+                PaddingRight: =16
+                PaddingTop: =16
+                Tooltip: ="View item details"
+                Width: =50
+                X: =Parent.TemplateWidth - Self.Width - 12
+                Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                ZIndex: =4
+
+            Separator2 As rectangle:
+                Height: =8
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - Self.Height
+                ZIndex: =5
+
+            Rectangle2 As rectangle:
+                Height: =Parent.TemplateHeight - Separator2.Height
+                OnSelect: =Select(Parent)
+                Visible: =ThisItem.IsSelected
+                Width: =4
+                ZIndex: =6
+
+            Label12 As label:
+                Height: =45
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.'Item number'
+                Width: =135
+                X: =103
+                Y: =53
+                ZIndex: =7
+
+            Rectangle12 As rectangle:
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =147
+                OnSelect: =Select(Parent)
+                Width: =12
+                X: =279
+                ZIndex: =8
+
+    Container4 As groupContainer.manualLayoutContainer:
+        Height: =568
+        Visible: =_showSelectMember
+        Width: =966
+        X: =212
+        Y: =112
+        ZIndex: =10
+
+        Rectangle3 As rectangle:
+            Height: =41
+            Width: =966
+            ZIndex: =1
+
+        Rectangle6 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =527
+            Width: =966
+            Y: =41
+            ZIndex: =2
+
+        Icon5 As icon.CancelBadge:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =41
+            Icon: =Icon.CancelBadge
+            OnSelect: |-
+                =UpdateContext({_showSelectMember:false})
+            Width: =39
+            X: =914
+            ZIndex: =3
+
+        "Gallery1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =441
+            Items: =Search(CustomersV3,TextInput1.Text, "PersonFirstName", "NameAlias" , "OrganizationName")
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =104
+            Width: =966
+            Y: =127
+            ZIndex: =4
+
+            Image3 As image:
+                Height: =72
+                OnSelect: =Select(Parent)
+                RadiusBottomLeft: =8
+                RadiusBottomRight: =8
+                RadiusTopLeft: =8
+                RadiusTopRight: =8
+                Width: =72
+                X: =16
+                Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                ZIndex: =1
+
+            Title1 As label:
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =ThisItem.'Name or description'
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Parent.TemplateWidth - 173
+                X: =103
+                Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle1.Size * 1.8)) / 2
+                ZIndex: =2
+
+            Subtitle1 As label:
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =""
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Title1.Width
+                X: =Title1.X
+                Y: =Title1.Y + Title1.Height
+                ZIndex: =3
+
+            NextArrow1 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                Color: =RGBA(166, 166, 166, 1)
+                Height: =50
+                Icon: =Icon.ChevronRight
+                OnSelect: |-
+                    =UpdateContext({ SelectedItem: ThisItem });
+                PaddingBottom: =16
+                PaddingLeft: =16
+                PaddingRight: =16
+                PaddingTop: =16
+                Tooltip: ="View item details"
+                Width: =50
+                X: =Parent.TemplateWidth - Self.Width - 12
+                Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                ZIndex: =4
+
+            Separator1 As rectangle:
+                Height: =8
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - Self.Height
+                ZIndex: =5
+
+            Rectangle9 As rectangle:
+                Height: =Parent.TemplateHeight - Separator1.Height
+                OnSelect: =Select(Parent)
+                Visible: =ThisItem.IsSelected
+                Width: =4
+                ZIndex: =6
+
+        TextInput1 As text:
+            Default: =""
+            Width: =780
+            X: =93
+            Y: =64
+            ZIndex: =5
+
+    Container17 As groupContainer.manualLayoutContainer:
+        Height: =400
+        Visible: =_showSelectMenu
+        Width: =275
+        X: =1089
+        Y: =44
+        ZIndex: =11
+
+        Rectangle1 As rectangle:
+            Height: =400
+            Width: =275
+            ZIndex: =1
+
+        Button2 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: |-
+                =Navigate('Receipt History');UpdateContext({_showSelectMenu: false})
+            Text: ="Receipt History"
+            Width: =275
+            ZIndex: =2
+
+        Button2_10 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: |-
+                =Navigate(Payment);UpdateContext({_showSelectMenu: false})
+            Text: ="Payment Page"
+            Width: =275
+            Y: =52
+            ZIndex: =3
+
+        Button2_13 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: |-
+                =If(
+                    (Label72.Text = "Admin"),
+                    Navigate('Cashier Master'),
+                    Notify("You don't have permission.", NotificationType.Warning)
+                );UpdateContext({_showSelectMenu: false})
+            Text: ="Cashier Master"
+            Width: =275
+            Y: =104
+            ZIndex: =6
+
+        Button2_14 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: |-
+                =If(
+                    (Label72.Text = "Admin"),
+                    Navigate('Store Master'),
+                    Notify("You don't have permission.", NotificationType.Warning)
+                );UpdateContext({_showSelectMenu: false})
+            Text: ="Store Master"
+            Width: =275
+            Y: =156
+            ZIndex: =7
+
+        Button2_15 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: =Navigate('Close Store');
+            Text: ="Close Store"
+            Width: =275
+            Y: =348
+            ZIndex: =8
+
+    Label21 As label:
+        Height: =44
+        Text: =""
+        Width: =362
+        X: =65
+        ZIndex: =12
+

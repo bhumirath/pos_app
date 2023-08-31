@@ -1,0 +1,124 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr35c_cashier_masters",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr35c_cashier_master",
+    "MaxGetRowsCount": 500,
+    "Name": "Cashier_Masters",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr35c_cashier_master_AsyncOperations": "System Jobs",
+      "cr35c_cashier_master_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr35c_cashier_master_DuplicateBaseRecord": "Duplicate Records (cr35c_cashier_master_DuplicateBaseRecord)",
+      "cr35c_cashier_master_DuplicateMatchingRecord": "Duplicate Records (cr35c_cashier_master_DuplicateMatchingRecord)",
+      "cr35c_cashier_master_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr35c_cashier_master_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr35c_cashier_master_ProcessSession": "Process Sessions",
+      "cr35c_cashier_master_SyncErrors": "Sync Errors",
+      "cr35c_cashier_masterid": "Cashier_Master",
+      "cr35c_cashier_name": "Cashier_Name ",
+      "cr35c_cashieraddress": "CashierAddress",
+      "cr35c_cashierno": "CashierNo",
+      "cr35c_email": "Email",
+      "cr35c_mobile": "Mobile",
+      "cr35c_role": "Role",
+      "cr35c_Store_": "Store_",
+      "cr35c_StoreOp": "StoreOp",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Cashier_Masters",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Cashier_Masters (Views)",
+    "Name": "_cr35c_cashier_master_views",
+    "RelatedEntityName": "Cashier_Masters",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1860c90a-f49f-4375-a335-cc915d93a2a1": "Active Cashier_Masters",
+      "708f29e3-e0b5-4edb-a760-96988043a69f": "Cashier_Master Associated View",
+      "84bb232f-a1b3-4931-b8e6-d7478ec5b20b": "Cashier_Master Lookup View",
+      "bf0fe0ee-4343-4f46-9d39-09d877a4e191": "Cashier_Master Advanced Find View",
+      "e02a2784-0c6e-4b24-a4d3-973928b3df4b": "Inactive Cashier_Masters"
+    }
+  },
+  {
+    "DisplayName": "Role (Cashier_Masters)",
+    "Name": "cr35c_cashier_master_cr35c_role",
+    "OptionSetInfoNameMapping": {
+      "595150000": "User",
+      "595150001": "Admin"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr35c_role",
+        "OptionSetReferenceEntityName": "Cashier_Masters"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "cr35c_role",
+    "RelatedEntityName": "Cashier_Masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Cashier_Masters)",
+    "Name": "cr35c_cashier_master_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Cashier_Masters"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Cashier_Masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Cashier_Masters)",
+    "Name": "cr35c_cashier_master_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Cashier_Masters"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Cashier_Masters",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,298 @@
+"Receipt As screen.'printableLayout_A4Portrait_ver1.0'":
+    Height: =1123
+    Width: =794
+
+    PrintButton1 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Lighter
+        Height: =32
+        OnSelect: |
+            =Set(PrintCount,PrintCount + 1);
+            ClearCollect(
+                SplitData,
+                Split(TextInput12.Text, "-")
+            );
+            
+            Set(
+                InputString,
+                Last(SplitData)
+            );
+            
+            Set(
+                CountX,
+                Len(InputString.Value) - Len(Substitute(InputString.Value, "x", ""))
+            );
+            
+            Set(
+                ConvertedNumber,
+                Text(0, "[$-en-US]0")
+            );
+            
+            Set(
+                NewReceiptCode,
+                Substitute(LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat, "x", ConvertedNumber)
+            );
+            Patch(
+                'Receipt Lines',
+                ForAll(
+                    Gallery6.AllItems,
+                    {
+                        Refno: Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount),
+                        Productlist: Label1.Text,
+                        AmountProduct: Value(Label2.Text),
+                        qty: Value(Label16.Text)
+                    }
+                )
+            );
+            Patch(
+                'Receipt Transactions',
+                Defaults('Receipt Transactions'),
+                {
+                    Time: Text(Label3_1.Text),
+                    Member: Text(Label10_2.Text),
+                    Amount: Value(Label23.Text),
+                    Ref: Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount)
+                }
+            );
+            Patch(
+                'Receipt Payments',
+                Defaults('Receipt Payments'),
+                {
+                    PaymentMethodsFrist: Text(Label41.Text),
+                    Amount: Value(Label23.Text),
+                    payment1: Value(Label21_1.Text),
+                    payment2: Value(Label42.Text),
+                    Paid: Value(Label25.Text),
+                    Chage: Value(Label48.Text),
+                    RefPay: Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount),
+                    PaymentMethodsSecond: Last(PaymentMethods).Methods
+                }
+            );
+            Print();
+        Size: =13
+        TabIndex: =0
+        Text: ="Print"
+        Visible: =Not(Parent.Printing)
+        Width: =96
+        X: =Parent.Width - Self.Width - 25
+        Y: =25
+        ZIndex: =2
+
+    "Gallery6 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =551
+        Items: =colProductOrder
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =44
+        Width: =710
+        X: =51
+        Y: =316
+        ZIndex: =15
+
+        Separator4 As rectangle:
+            Height: =0
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =5
+
+        Label1 As label:
+            Height: =45
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.SearchName
+            Width: =213
+            X: =109
+            ZIndex: =6
+
+        Label2 As label:
+            Height: =45
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.PurchasePrice
+            Width: =71
+            X: =599
+            ZIndex: =7
+
+        Label16 As label:
+            Height: =43
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.Count
+            Width: =35
+            X: =40
+            ZIndex: =8
+
+    Container10 As groupContainer.manualLayoutContainer:
+        Height: =54
+        Width: =697
+        X: =40
+        Y: =262
+        ZIndex: =16
+
+        Label17 As label:
+            Height: =38
+            Text: ="Item"
+            Width: =70
+            X: =15
+            Y: =3
+            ZIndex: =1
+
+        Label18 As label:
+            Text: ="Name"
+            X: =126
+            Y: =3
+            ZIndex: =2
+
+        Label19 As label:
+            Height: =52
+            Text: ="Price"
+            Width: =78
+            X: =607
+            Y: =2
+            ZIndex: =3
+
+    Label3_1 As label:
+        Color: =RGBA(0, 16, 96, 1)
+        Height: =44
+        Size: =18
+        Text: |-
+            =Text( Today(), "dd/mmm/yyyy :  " )&Text( CurrentTime, DateTimeFormat.LongTime24 )
+        Width: =297
+        X: =257
+        Y: =163
+        ZIndex: =17
+
+    Timer2_1 As timer:
+        AutoStart: =true
+        Duration: =1000
+        Height: =44
+        OnTimerEnd: =Set( CurrentTime, Now() )
+        Repeat: =true
+        Visible: =false
+        Width: =168
+        X: =347
+        Y: =218
+        ZIndex: =18
+
+    Label20 As label:
+        Height: =67
+        Size: =20
+        Text: =LookUp(Cashier_Masters, User().Email = Email).Store_.StoreName
+        Width: =167
+        X: =317
+        Y: =46
+        ZIndex: =19
+
+    Label22 As label:
+        Text: ="Totals"
+        X: =40
+        Y: =877
+        ZIndex: =21
+
+    Label23 As label:
+        Text: =total
+        X: =611
+        Y: =877
+        ZIndex: =22
+
+    Label24 As label:
+        Text: ="Paid"
+        X: =40
+        Y: =992
+        ZIndex: =23
+
+    Label25 As label:
+        Text: =payment1+payment2
+        X: =611
+        Y: =992
+        ZIndex: =24
+
+    Label21_1 As label:
+        Text: =payment1
+        X: =611
+        Y: =917
+        ZIndex: =25
+
+    Label10_2 As label:
+        FontWeight: =FontWeight.Lighter
+        Text: =CustomerName
+        Visible: =false
+        X: =40
+        Y: =1062
+        ZIndex: =26
+
+    "Gallery10 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =92
+        Items: =PaymentMethods
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =34
+        X: =9
+        Y: =917
+        ZIndex: =27
+
+        Label41 As label:
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.Methods
+            X: =32
+            Y: =4
+            ZIndex: =7
+
+    Label42 As label:
+        Text: =payment2
+        X: =611
+        Y: =957
+        ZIndex: =28
+
+    Label43 As label:
+        Text: =
+        X: =60
+        Y: =60
+        ZIndex: =29
+
+    Label47 As label:
+        Text: ="Chage"
+        X: =40
+        Y: =1032
+        ZIndex: =30
+
+    Label48 As label:
+        Text: =Chage
+        X: =611
+        Y: =1032
+        ZIndex: =31
+
+    Label49 As label:
+        Text: =LookUp(Cashier_Masters, User().Email = Email).Store_.Address
+        Width: =237
+        X: =282
+        Y: =111
+        ZIndex: =32
+
+    Arrow1_1 As arrow.backArrow:
+        OnSelect: =Navigate(Payment)
+        Visible: =Not(Parent.Printing)
+        ZIndex: =33
+
+    Label65 As label:
+        FontWeight: =FontWeight.Lighter
+        Height: =52
+        Text: |-
+            =Text(DateValue(DatePicker3.SelectedDate),LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount)
+            //LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat
+        Width: =197
+        X: =70
+        Y: =111
+        ZIndex: =34
+
+    Label32 As label:
+        Height: =41
+        Text: =NewReceiptCode & PrintCount
+        Visible: =false
+        Width: =222
+        X: =60
+        Y: =151
+        ZIndex: =35
+

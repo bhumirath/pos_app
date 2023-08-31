@@ -1,0 +1,429 @@
+"'Receipt Detail' As screen":
+
+    Container18 As groupContainer.manualLayoutContainer:
+        Height: =40
+        Visible: =Not(Parent.Printing)
+        Width: =1366
+        ZIndex: =1
+
+        Rectangle16 As rectangle:
+            Height: =40
+            Width: =1366
+            ZIndex: =1
+
+        Label10 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Receipt summary"
+            Width: =205
+            X: =40
+            ZIndex: =2
+
+        Icon9_1 As icon.Print:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =40
+            Icon: =Icon.Print
+            OnSelect: =Navigate(Screen1)
+            X: =1302
+            ZIndex: =3
+
+        Icon8_1 As icon.DetailList:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =40
+            Icon: =Icon.DetailList
+            OnSelect: |-
+                =If(_showSelectMenuSum, UpdateContext({_showSelectMenuSum: false}), UpdateContext({_showSelectMenuSum: true}))
+            X: =1238
+            ZIndex: =4
+
+        Icon14 As icon.DockLeft:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =40
+            Icon: =Icon.DockLeft
+            OnSelect: |-
+                =Set(PrintCount,PrintCount + 1);
+                Patch(
+                    'Receipt Lines',
+                    ForAll(
+                        Gallery6_4.AllItems,
+                        {
+                            Refno: Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount),
+                            Productlist: Label1_4.Text,
+                            AmountProduct: -Value(Label2_4.Text),
+                            qty: -Value(Label16_4.Text)
+                        }
+                    )
+                );
+                Patch(
+                    'Receipt Transactions',
+                    Defaults('Receipt Transactions'),
+                    {
+                        Time: Text(Label3_1.Text),
+                        Member: Text(Label10_2.Text),
+                        Amount: -Value(Label23.Text),
+                        Ref: Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount),
+                        void: Text(Label57.Text)
+                    }
+                );
+                Patch(
+                    'Receipt Payments',
+                    Defaults('Receipt Payments'),
+                    {
+                        PaymentMethodsFrist: Text(Label41.Text),
+                        Amount: -Value(Label23.Text),
+                        payment1: -Value(Label21_1.Text),
+                        payment2: -Value(Label42.Text),
+                        Paid: -Value(Label25.Text),
+                        Chage: -Value(Label48.Text),
+                        RefPay: Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount),
+                        PaymentMethodsSecond: Last(PaymentMethods).Methods        
+                    }
+                );Navigate('Receipt History', ScreenTransition.Fade, { SharedPrintCount: PrintCount });
+            X: =1174
+            ZIndex: =5
+
+        Label65_1 As label:
+            FontWeight: =FontWeight.Lighter
+            Text: |-
+                =Text(Today(), LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat) & Text(PrintCount)
+                //LookUp(Cashier_Masters, User().Email = Email).Store_.ReceiptFormat
+            Width: =208
+            X: =712
+            ZIndex: =6
+
+    Container19 As groupContainer.manualLayoutContainer:
+        Height: =728
+        Visible: =Not(Parent.Printing)
+        Width: =895
+        Y: =40
+        ZIndex: =2
+
+        Rectangle18 As rectangle:
+            Height: =47
+            Width: =895
+            Y: =16
+            ZIndex: =2
+
+        Label55 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="ID"
+            X: =104
+            Y: =16
+            ZIndex: =4
+
+        Label56 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="QTY"
+            X: =502
+            Y: =16
+            ZIndex: =5
+
+        Label55_1 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Payment"
+            X: =276
+            Y: =19
+            ZIndex: =6
+
+        Label55_3 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Price"
+            X: =643
+            Y: =16
+            ZIndex: =8
+
+        Rectangle18_1 As rectangle:
+            Height: =47
+            Width: =895
+            Y: =347
+            ZIndex: =9
+
+        Label56_1 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Receipt ID"
+            X: =13
+            Y: =347
+            ZIndex: =11
+
+        Label55_5 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Payment 1"
+            X: =212
+            Y: =350
+            ZIndex: =12
+
+        Label55_6 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Payment 2"
+            X: =411
+            Y: =350
+            ZIndex: =13
+
+        Label55_7 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Amount"
+            X: =683
+            Y: =347
+            ZIndex: =14
+
+        "Gallery6_4 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =284
+            Items: =FilteredDataCollection
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =44
+            Width: =895
+            Y: =63
+            ZIndex: =15
+
+            Separator4_4 As rectangle:
+                Height: =0
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - Self.Height
+                ZIndex: =5
+
+            Label1_4 As label:
+                Height: =44
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.Productlist
+                Width: =213
+                X: =242
+                ZIndex: =6
+
+            Label2_4 As label:
+                Height: =44
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.AmountProduct
+                Width: =71
+                X: =655
+                ZIndex: =7
+
+            Label16_4 As label:
+                Height: =43
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.qty
+                Width: =35
+                X: =497
+                Y: =1
+                ZIndex: =8
+
+            Label33 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.ID
+                X: =92
+                Y: =2
+                ZIndex: =9
+
+        "Gallery12 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =334
+            Items: =DataCollection
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =84
+            Width: =895
+            Y: =394
+            ZIndex: =16
+
+            Label39 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.PaymentMethodsFrist
+                X: =221
+                Y: =20
+                ZIndex: =2
+
+            Label54 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.PaymentMethodsSecond
+                X: =419
+                Y: =20
+                ZIndex: =3
+
+            Label57 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.RefPay
+                Width: =198
+                Y: =20
+                ZIndex: =4
+
+            Label58 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.Amount
+                X: =693
+                Y: =20
+                ZIndex: =5
+
+            Label36_2 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.payment2
+                X: =569
+                Y: =20
+                ZIndex: =7
+
+            Label35_2 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.payment1
+                X: =327
+                Y: =20
+                ZIndex: =8
+
+    Container20 As groupContainer.manualLayoutContainer:
+        Height: =728
+        Width: =471
+        X: =895
+        Y: =40
+        ZIndex: =3
+
+        "Gallery13 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Items: =DataCollection
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =575
+            Width: =471
+            Y: =24
+            ZIndex: =1
+
+            Label59 As label:
+                Height: =42
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.RefPay
+                Width: =165
+                X: =156
+                ZIndex: =1
+
+            Label60 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Order Date"
+                X: =6
+                Y: =61
+                ZIndex: =2
+
+            "Gallery14 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                DelayItemLoading: =true
+                Height: =129
+                Items: =MemberTran
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =0
+                TemplateSize: =129
+                Width: =471
+                Y: =17
+                ZIndex: =4
+
+                Label63 As label:
+                    Height: =42
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.Time
+                    Width: =203
+                    X: =266
+                    Y: =41
+                    ZIndex: =1
+
+                Label66 As label:
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.Member
+                    Width: =205
+                    X: =266
+                    Y: =83
+                    ZIndex: =2
+
+                Label67 As label:
+                    OnSelect: =Select(Parent)
+                    Text: ="Custommer"
+                    X: =3
+                    Y: =83
+                    ZIndex: =3
+
+            Label68 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.Chage
+                X: =321
+                Y: =534
+                ZIndex: =5
+
+            Label58_1 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.Amount
+                X: =321
+                Y: =404
+                ZIndex: =6
+
+            Label34 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.payment2+ThisItem.payment1
+                X: =321
+                Y: =469
+                ZIndex: =7
+
+            Label35 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Sale Amount"
+                X: =6
+                Y: =404
+                ZIndex: =8
+
+            Label36 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Payment Amount"
+                Width: =198
+                X: =6
+                Y: =469
+                ZIndex: =9
+
+            Label37 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Change"
+                X: =6
+                Y: =534
+                ZIndex: =10
+
+    Container17_2 As groupContainer.manualLayoutContainer:
+        Height: =400
+        Visible: =_showSelectMenuSum
+        Width: =275
+        X: =1089
+        Y: =44
+        ZIndex: =4
+
+        Rectangle1_2 As rectangle:
+            Height: =400
+            Width: =275
+            ZIndex: =1
+
+        Button2_2 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: |-
+                =Navigate('Point of Sales');UpdateContext({_showSelectMenuSum: false})
+            Text: ="Point of Sales Page"
+            Width: =275
+            ZIndex: =2
+
+        Button2_3 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: |-
+                =Navigate('Receipt History');UpdateContext({_showSelectMenuSum: false})
+            Text: ="Receipt History Page"
+            Width: =275
+            Y: =52
+            ZIndex: =3
+
+        Button2_7 As button:
+            Color: =RGBA(56, 96, 178, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =52
+            OnSelect: |-
+                =Navigate(Payment);UpdateContext({_showSelectMenuSum: false})
+            Text: ="Payment Page"
+            Width: =275
+            Y: =104
+            ZIndex: =4
+

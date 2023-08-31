@@ -1,0 +1,35 @@
+{
+  "0cb6b855-1edd-49cf-9f77-84e13deb3d8a": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Fin & Ops Apps (Dynamics 365)",
+      "iconUri": "https://connectoricons-prod.azureedge.net/master/1.0.1653.3400/dynamicsax/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_dynamicsax",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "quickerpuat.sandbox.operations.dynamics.com": {
+        "dataSources": {
+          "CustomerPaymentMethods": {
+            "tableName": "CustomerPaymentMethods"
+          },
+          "CustomersV3": {
+            "tableName": "CustomersV3"
+          },
+          "ReleasedProductsV2": {
+            "tableName": "ReleasedProductsV2"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "CustomersV3",
+      "ReleasedProductsV2",
+      "CustomerPaymentMethods"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "0cb6b855-1edd-49cf-9f77-84e13deb3d8a"
+  }
+}

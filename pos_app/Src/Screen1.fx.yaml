@@ -1,0 +1,215 @@
+Screen1 As screen:
+    Height: |-
+        =If(
+            CountRows(Gallery6_3.AllItems) > 8,
+             1500,
+             728
+        )
+    Width: =471
+
+    Container20_1 As groupContainer.manualLayoutContainer:
+        Height: =728
+        Width: =471
+        ZIndex: =1
+
+        "Gallery6_3 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =336
+            Items: =FilteredDataCollection
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =44
+            Width: =432
+            X: =19
+            Y: =176
+            ZIndex: =1
+
+            Separator4_3 As rectangle:
+                Height: =0
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - Self.Height
+                ZIndex: =5
+
+            Label1_3 As label:
+                Height: =44
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.Productlist
+                Width: =212
+                X: =113
+                ZIndex: =6
+
+            Label2_3 As label:
+                Height: =44
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.AmountProduct
+                Width: =68
+                X: =363
+                ZIndex: =7
+
+            Label16_3 As label:
+                Height: =43
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.qty
+                Width: =35
+                X: =40
+                ZIndex: =8
+
+        Label20_2 As label:
+            Height: =51
+            Size: =20
+            Text: |
+                =LookUp(Cashier_Masters, User().Email = Email).Store_.StoreName
+            Width: =168
+            X: =151
+            Y: =4
+            ZIndex: =4
+
+        Label49_2 As label:
+            Text: =LookUp(Cashier_Masters, User().Email = Email).Store_.Address
+            Width: =237
+            X: =117
+            Y: =55
+            ZIndex: =5
+
+        "Gallery9_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            DelayItemLoading: =true
+            Height: =728
+            Items: =DataCollection
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =728
+            Width: =471
+            ZIndex: =6
+
+            Label40_1 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.Amount
+                Width: =96
+                X: =375
+                Y: =524
+                ZIndex: =1
+
+            Label44_1 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.Chage
+                Width: =96
+                X: =375
+                Y: =684
+                ZIndex: =2
+
+            Label46_1 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.PaymentMethodsFrist
+                X: =49
+                Y: =564
+                ZIndex: =4
+
+            Label51_1 As label:
+                Height: =47
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.'Created On'
+                Width: =210
+                X: =140
+                Y: =92
+                ZIndex: =5
+
+            Label52_1 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Total"
+                X: =49
+                Y: =524
+                ZIndex: =6
+
+            Label53_1 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Chage"
+                X: =49
+                Y: =684
+                ZIndex: =7
+
+            Label35_1 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.payment1
+                Width: =96
+                X: =375
+                Y: =564
+                ZIndex: =8
+
+            Label36_1 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.payment2
+                Width: =96
+                X: =374
+                Y: =604
+                ZIndex: =9
+
+            Label37_1 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.PaymentMethodsSecond
+                X: =49
+                Y: =604
+                ZIndex: =10
+
+            Label45_1 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.Paid
+                Width: =96
+                X: =375
+                Y: =644
+                ZIndex: =11
+
+            Label50_1 As label:
+                OnSelect: =Select(Parent)
+                Text: ="Paid"
+                X: =49
+                Y: =644
+                ZIndex: =12
+
+            Icon9_2 As icon.Print:
+                Height: =40
+                Icon: =Icon.Print
+                OnSelect: =Print()
+                Width: =41
+                X: =430
+                Y: =4
+                ZIndex: =13
+
+            Container10_1 As groupContainer.manualLayoutContainer:
+                Height: =42
+                Width: =424
+                X: =31
+                Y: =139
+                ZIndex: =14
+
+                Label17_1 As label:
+                    Height: =38
+                    Text: ="Item"
+                    Width: =70
+                    X: =15
+                    Y: =3
+                    ZIndex: =1
+
+                Label18_1 As label:
+                    Height: =38
+                    Text: ="Name"
+                    Width: =83
+                    X: =126
+                    Y: =3
+                    ZIndex: =2
+
+                Label19_1 As label:
+                    Height: =52
+                    Text: ="Price"
+                    Width: =86
+                    X: =338
+                    Y: =2
+                    ZIndex: =3
+
+    Arrow1 As arrow.backArrow:
+        OnSelect: =Navigate('Receipt Detail')
+        Visible: =Not(Parent.Printing)
+        ZIndex: =2
+
