@@ -1,5 +1,7 @@
 "'Point of Sales' As screen":
     Fill: =Color.WhiteSmoke
+    OnVisible: |-
+        =UpdateContext({varNumber: ""})
 
     Container1 As groupContainer.manualLayoutContainer:
         Height: =475
@@ -51,7 +53,7 @@
                 ZIndex: =6
 
             TextInput5 As text:
-                Default: =ThisItem.Count
+                Default: =ThisItem.Count + varNumber
                 DisplayMode: =If(EditMode, DisplayMode.Edit, DisplayMode.View)
                 Height: =31
                 OnChange: |-
@@ -246,7 +248,7 @@
         Button1 As button:
             Height: =62
             OnSelect: |-
-                =UpdateContext({ TextInput: 1 })
+                =UpdateContext({ varNumber: Concatenate(varNumber,Self.Text) })
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -258,7 +260,7 @@
         Button1_1 As button:
             Height: =62
             OnSelect: |-
-                =UpdateContext({ TextInput: 2 })
+                =UpdateContext({ varNumber: Concatenate(varNumber,Self.Text) })
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -271,7 +273,7 @@
         Button1_2 As button:
             Height: =62
             OnSelect: |-
-                =UpdateContext({ TextInput: 3 })
+                =UpdateContext({ varNumber: Concatenate(varNumber,Self.Text) })
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -309,7 +311,7 @@
         Button1_5 As button:
             Height: =62
             OnSelect: |-
-                =UpdateContext({ TextInput: 4 })
+                =UpdateContext({ varNumber: Concatenate(varNumber,Self.Text) })
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -322,7 +324,7 @@
         Button1_6 As button:
             Height: =62
             OnSelect: |-
-                =UpdateContext({ TextInput: 5 })
+                =UpdateContext({ varNumber: Concatenate(varNumber,Self.Text) })
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -336,7 +338,7 @@
         Button1_7 As button:
             Height: =62
             OnSelect: |-
-                =UpdateContext({ TextInput: 6 })
+                =UpdateContext({ varNumber: Concatenate(varNumber,Self.Text) })
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -378,7 +380,7 @@
         Button1_10 As button:
             Height: =62
             OnSelect: |-
-                =UpdateContext({ TextInput: 7 })
+                =UpdateContext({ varNumber: Concatenate(varNumber,Self.Text) })
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -391,7 +393,7 @@
         Button1_11 As button:
             Height: =62
             OnSelect: |-
-                =UpdateContext({ TextInput: 8 })
+                =UpdateContext({ varNumber: Concatenate(varNumber,Self.Text) })
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -405,7 +407,7 @@
         Button1_12 As button:
             Height: =64
             OnSelect: |-
-                =UpdateContext({ TextInput: 9 })
+                =UpdateContext({ varNumber: Concatenate(varNumber,Self.Text) })
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -455,7 +457,7 @@
         Button1_16 As button:
             Height: =62
             OnSelect: |-
-                =UpdateContext({ TextInput: 0 })
+                =UpdateContext({ varNumber: Concatenate(varNumber,Self.Text) })
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
